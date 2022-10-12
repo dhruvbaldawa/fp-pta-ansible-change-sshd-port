@@ -6,3 +6,9 @@
   service:
     name: sshd
     state: restarted
+
+- name: restart firewalld
+  become: yes
+  ansible.builtin.systemd:
+    name: firewalld
+    state: restarted

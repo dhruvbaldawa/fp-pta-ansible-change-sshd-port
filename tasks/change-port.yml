@@ -21,6 +21,21 @@
 - name: Confirm host connection works
   ansible.builtin.ping:
 
+- name: Install firewalld
+  become: yes
+  dnf:
+    name:
+      - firewalld
+    state: present
+    update_cache: yes
+
+- name: Set firewalld to be enabled
+  become: yes
+  ansible.builtin.systemd:
+    state: started
+    name: firewalld
+    enabled: true
+
 - name: populate service facts
   ansible.builtin.service_facts:
 
